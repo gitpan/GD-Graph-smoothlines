@@ -1,0 +1,6 @@
+Revision history for Perl extension GD::Graph::smoothlines.
+
+0.01  Thu Aug 23 19:19:36 2007
+	- original version; created by h2xs 1.23 with options
+		-XA -n GD::Graph::smoothlines
+
