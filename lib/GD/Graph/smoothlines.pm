@@ -1,6 +1,6 @@
 package GD::Graph::smoothlines;
 
-($GD::Graph::smoothlines::VERSION) = '$Revision: 1.15 $' =~ /\s([\d.]+)/;
+($GD::Graph::smoothlines::VERSION) = '$Revision: 1.1.1.1 $' =~ /\s([\d.]+)/;
 
 use strict;
 
@@ -171,7 +171,7 @@ sub draw_data_set
 		
 		if (defined $xb)
 		{
-			my @asd = ( $xb, $yb );#$self->val_to_pixel( $xb, $yb );
+			my @asd = ( $xb, $yb );
 			push @_points, { x => $asd[0], y => $asd[1] };
 			
 			# TODO: is this correct?!
@@ -180,7 +180,7 @@ sub draw_data_set
 		($xb, $yb) = ($xe, $ye);
 	}
 	
-	my @asd = ( $xb, $yb );# $self->val_to_pixel( $xb, $yb );
+	my @asd = ( $xb, $yb );
 	push @_points, { x => $asd[0], y => $asd[1] };
 	
 	if ( scalar( @_points ) > 2 ) {
@@ -188,9 +188,9 @@ sub draw_data_set
 	}
 	
 	my $asd = shift @_points;
-	( $xb, $yb ) = ( $asd->{x}, $asd->{y} );#$self->val_to_pixel( $asd->{x}, $asd->{y} );
+	( $xb, $yb ) = $self->val_to_pixel( $asd->{x}, $asd->{y} );
 	for $asd ( @_points ) {
-		my ( $xe, $ye ) = ( $asd->{x}, $asd->{y} );#$self->val_to_pixel( $asd->{x}, $asd->{y} );
+		my ( $xe, $ye ) = $self->val_to_pixel( $asd->{x}, $asd->{y} );
 		$self->draw_line( $xb, $yb, $xe, $ye, $type, $dsci ) if defined $dsci;
 		($xb, $yb) = ($xe, $ye);
 	}
