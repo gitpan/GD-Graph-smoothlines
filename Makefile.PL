@@ -5,8 +5,11 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'GD::Graph::smoothlines',
     VERSION_FROM      => 'lib/GD/Graph/smoothlines.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
-    ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
+    PREREQ_PM   => {
+		'GD'        => '2.35',
+		'GD::Graph' => '1.44',
+	},
+	($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (
        AUTHOR         => 'Andrei Kozovski') : ()),
 );

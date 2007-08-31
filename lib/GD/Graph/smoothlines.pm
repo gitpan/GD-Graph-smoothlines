@@ -1,6 +1,6 @@
 package GD::Graph::smoothlines;
 
-($GD::Graph::smoothlines::VERSION) = '$Revision: 1.1.1.1 $' =~ /\s([\d.]+)/;
+($GD::Graph::smoothlines::VERSION) = '$Revision: 1.2 $' =~ /\s([\d.]+)/;
 
 use strict;
 
@@ -9,11 +9,20 @@ use GD::Graph::lines;
 
 @GD::Graph::smoothlines::ISA = qw( GD::Graph::lines );
 
+use vars qw($VERSION);
+$VERSION = '1.1';
+
 # Bezier smoothed plottype
 # http://homepages.borland.com/efg2lab/Graphics/Jean-YvesQueinecBezierCurves.htm - description of bezier curves
 
-sub _smoothFactor { exists $_[0]->{_smoothFactor} ? $_[0]->{_smoothFactor} : 0.75 }
-sub _bezierCurvePoints { exists $_[0]->{_bezierCurvePoints} ? $_[0]->{_bezierCurvePoints} : 50 }
+sub smoothFactor {
+	$_[0]->{_smoothFactor} = $_[1] if ( defined $_[1] );
+	return exists $_[0]->{_smoothFactor} ? $_[0]->{_smoothFactor} : 0.75;
+}
+sub bezierCurvePoints {
+	$_[0]->{_bezierCurvePoints} = $_[1] if ( defined $_[1] );
+	return exists $_[0]->{_bezierCurvePoints} ? $_[0]->{_bezierCurvePoints} : 50;
+}
 
 sub _mid
 {
@@ -33,7 +42,7 @@ sub _controlPoint
 	my $self = shift;
 	my ( $p1, $p2, $p3 ) = @_;
 	
-	my $sa = $self->_mirror( $p1, $p2, $self->_smoothFactor );
+	my $sa = $self->_mirror( $p1, $p2, $self->smoothFactor );
 	my $sb = $self->_mid( $p2, $sa );
 	
 	my $m  = $self->_mid( $p2, $p3 );
@@ -109,7 +118,7 @@ sub _getPoints
 		$pC2->{y} = $self->_controlPoint( $p3->{y}, $p2->{y}, $p1->{y} );
 		
 		$rightEdge = 0;
-		for ( my $t = 0; $t <= 1; $t = $t +1 / $self->_bezierCurvePoints ) {
+		for ( my $t = 0; $t <= 1; $t = $t +1 / $self->bezierCurvePoints ) {
 			my $b = {};
 			
 			$b->{x} = $self->_bezier( $t, $p1->{x}, $pC1->{x}, $pC2->{x}, $p2->{x} );
@@ -199,3 +208,48 @@ sub draw_data_set
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+ GD::Graph::smoothlines
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+ This package is used for creation a smooth line chart.
+
+=head1 EXAMPLES
+
+ use GD::Graph::smoothlines;
+ 
+ my $graph = GD::Graph::smoothlines->new();
+
+=head1 MODULE STRUCTURE
+
+=head1 METHODS
+
+ Available public methods
+
+=over 4
+
+=item proto int smoothFactor ( [ int $number ] )
+=item proto int bezierCurvePoints ( [ int $number ] )
+
+=back
+
+=head1 SEE ALSO
+
+ GD::Graph
+
+=head1 COPYRIGHT
+
+ Copyright (c) 2007 Andrei Kozovski
+
+=head1 AUTHORS
+
+ This release was made by Andrei Kozovski
+
+=cut
