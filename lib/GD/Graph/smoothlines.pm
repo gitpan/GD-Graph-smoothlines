@@ -1,6 +1,6 @@
 package GD::Graph::smoothlines;
 
-($GD::Graph::smoothlines::VERSION) = '$Revision: 1.2 $' =~ /\s([\d.]+)/;
+($GD::Graph::smoothlines::VERSION) = '$Revision: 1.3 $' =~ /\s([\d.]+)/;
 
 use strict;
 
@@ -236,6 +236,7 @@ __END__
 =over 4
 
 =item proto int smoothFactor ( [ int $number ] )
+
 =item proto int bezierCurvePoints ( [ int $number ] )
 
 =back
