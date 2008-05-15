@@ -1,8 +1,9 @@
 package GD::Graph::smoothlines;
 
-($GD::Graph::smoothlines::VERSION) = '$Revision: 1.3 $' =~ /\s([\d.]+)/;
+($GD::Graph::smoothlines::VERSION) = '$Revision: 1.5 $' =~ /\s([\d.]+)/;
 
 use strict;
+use warnings;
 
 use GD;
 use GD::Graph::lines;

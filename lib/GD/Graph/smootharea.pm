@@ -1,8 +1,9 @@
 package GD::Graph::smootharea;
  
-($GD::Graph::area::VERSION) = '$Revision: 1.3 $' =~ /\s([\d.]+)/;
+($GD::Graph::area::VERSION) = '$Revision: 1.5 $' =~ /\s([\d.]+)/;
 
 use strict;
+use warnings;
 
 use GD;
 use GD::Graph::smoothlines;
@@ -33,7 +34,7 @@ sub draw_data_set
 	my $self = shift;
 	my $ds   = shift;
 	
-	my @values = $self->{_data}->y_values( $ds ) ||
+	my @values = $self->{_data}->y_values( $ds ) or
 		return $self->_set_error( "Impossible illegal data set: $ds", $self->{_data}->error )
 	;
 	
@@ -45,7 +46,7 @@ sub draw_data_set
 	my $poly = GD::Polygon->new();
 	
 	my ( @top, @bottom );
-
+	
 	# Add the data points
 	for ( my $i = 0; $i < @values; $i++ )
 	{
@@ -93,7 +94,7 @@ sub draw_data_set
 	
 	# little stupid, but this is the interface
 	@_points = map { { x => $_->[0], y => $_->[1] } } @_points;
-	@_points = @{ $self->_getPoints( $ds, \@_points ) };
+	@_points = @{ $self->_getPoints( $ds, \@_points, 1 ) };
 	@_points = map { [ $_->{x}, $_->{y} ] } @_points;
 	
 	foreach my $pair ( @_points, reverse @bottom ) {
@@ -113,7 +114,6 @@ sub draw_data_set
 			$self->color_to_int( $self->gradientEndColor ),
 			int ( $min_bottom - $max_bottom )
 		);
-		
 		
 		my $last_w;
 		for ( @_points ) {
