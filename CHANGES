@@ -1,6 +1,9 @@
 Revision history for Perl extension GD::Graph::smoothlines
 ==========================================================
 
+1.6  Fri Mar 26 14:27:29 EET 2010
+	- unify versions
+
 1.5  Thu May 15 17:37:23 2008
 	- some bug fixes
 

@@ -1,7 +1,5 @@
 package GD::Graph::smootharea;
  
-($GD::Graph::area::VERSION) = '$Revision: 1.5 $' =~ /\s([\d.]+)/;
-
 use strict;
 use warnings;
 
@@ -14,7 +12,7 @@ use GD::Graph::utils qw(:all);
 @GD::Graph::smootharea::ISA = qw( GD::Graph::smoothlines );
 
 use vars qw($VERSION);
-$VERSION = '1.1';
+$VERSION = '1.6';
 
 sub enableGradient {
 	$_[0]->{_enableGradient} = $_[1] if ( defined $_[1] );

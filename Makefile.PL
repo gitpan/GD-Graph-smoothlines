@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-# $Revision: 1.5 $
 
 use 5.008008;
 use ExtUtils::MakeMaker;
@@ -7,7 +6,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile
 (
 	NAME    => 'GD::Graph::smoothlines',
-	VERSION => 1.5,
+	VERSION => 1.6,
 	
 	PREREQ_PM   => {
 		'GD'        => '2.35',

@@ -1,7 +1,5 @@
 package GD::Graph::smoothlines;
 
-($GD::Graph::smoothlines::VERSION) = '$Revision: 1.5 $' =~ /\s([\d.]+)/;
-
 use strict;
 use warnings;
 
@@ -11,7 +9,7 @@ use GD::Graph::lines;
 @GD::Graph::smoothlines::ISA = qw( GD::Graph::lines );
 
 use vars qw($VERSION);
-$VERSION = '1.1';
+$VERSION = '1.6';
 
 # Bezier smoothed plottype
 # http://homepages.borland.com/efg2lab/Graphics/Jean-YvesQueinecBezierCurves.htm - description of bezier curves
